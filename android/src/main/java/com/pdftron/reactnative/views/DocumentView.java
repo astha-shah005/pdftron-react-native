@@ -54,6 +54,7 @@ import com.pdftron.pdf.PDFViewCtrl;
 import com.pdftron.pdf.Page;
 import com.pdftron.pdf.ViewChangeCollection;
 import com.pdftron.pdf.annots.Markup;
+import com.pdftron.pdf.annots.RubberStamp;
 import com.pdftron.pdf.annots.SignatureWidget;
 import com.pdftron.pdf.annots.Widget;
 import com.pdftron.pdf.config.PDFViewCtrlConfig;
@@ -71,7 +72,6 @@ import com.pdftron.pdf.dialog.pdflayer.PdfLayerDialog;
 import com.pdftron.pdf.model.AnnotStyle;
 import com.pdftron.pdf.model.UserBookmarkItem;
 import com.pdftron.pdf.tools.AdvancedShapeCreate;
-import com.pdftron.pdf.tools.AnnotEditTextMarkup;
 import com.pdftron.pdf.tools.AnnotManager;
 import com.pdftron.pdf.tools.Eraser;
 import com.pdftron.pdf.tools.FreehandCreate;
@@ -101,8 +101,10 @@ import com.pdftron.reactnative.R;
 import com.pdftron.reactnative.nativeviews.RNCollabViewerTabHostFragment;
 import com.pdftron.reactnative.nativeviews.RNPdfViewCtrlTabFragment;
 import com.pdftron.reactnative.nativeviews.RNPdfViewCtrlTabHostFragment;
+import com.pdftron.reactnative.tools.CustomRubberStampTool;
 import com.pdftron.reactnative.utils.DocumentViewUtilsKt;
 import com.pdftron.reactnative.utils.DownloadFileCallback;
+import com.pdftron.reactnative.utils.ImageHelper;
 import com.pdftron.reactnative.utils.ReactUtils;
 import com.pdftron.sdf.Obj;
 
@@ -2502,8 +2504,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 {
 
             // remove unwanted items
             ToolManager.Tool currentTool = getToolManager() != null ? getToolManager().getTool() : null;
-            boolean isPanOrTextSelect = (currentTool instanceof Pan || (currentTool instanceof TextSelect && !(currentTool instanceof AnnotEditTextMarkup)));
-            if (mAnnotMenuItems != null && !isPanOrTextSelect) {
+            if (mAnnotMenuItems != null && !(currentTool instanceof Pan) && !(currentTool instanceof TextSelect)) {
                 List<QuickMenuItem> removeList = new ArrayList<>();
                 checkQuickMenu(quickMenu.getFirstRowMenuItems(), mAnnotMenuItems, removeList);
                 checkQuickMenu(quickMenu.getSecondRowMenuItems(), mAnnotMenuItems, removeList);
@@ -2514,7 +2515,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 {
                     quickMenu.setDividerVisibility(View.GONE);
                 }
             }
-            if (mLongPressMenuItems != null && isPanOrTextSelect) {
+            if (mLongPressMenuItems != null && (currentTool instanceof Pan || currentTool instanceof TextSelect)) {
                 List<QuickMenuItem> removeList = new ArrayList<>();
                 checkQuickMenu(quickMenu.getFirstRowMenuItems(), mLongPressMenuItems, removeList);
                 checkQuickMenu(quickMenu.getSecondRowMenuItems(), mLongPressMenuItems, removeList);
@@ -2829,11 +2830,6 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 {
             params.putInt(PAGE_CURRENT_KEY, to);
 
             onReceiveNativeEvent(params);
-        }
-
-        @Override
-        public void onPagesMoved(List<Integer> pagesMoved, int to, int currentPage) {
-
         }
 
         @Override
@@ -4185,6 +4181,16 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 {
             }
         }
         return propertyMap;
+    }
+
+    public void setCustomRubberStampTool(Uri uri, String data) {
+        PDFViewCtrl pdfViewCtrl = getPdfViewCtrl();
+
+        if (pdfViewCtrl.getToolManager() instanceof ToolManager) {
+            ToolManager toolManager = (ToolManager) pdfViewCtrl.getToolManager();
+            CustomRubberStampTool customRubberStampTool = new CustomRubberStampTool(pdfViewCtrl, uri, data);
+            toolManager.setTool(customRubberStampTool);
+        }
     }
 
     public void setFlagsForAnnotations(ReadableArray annotationFlagList) throws PDFNetException {

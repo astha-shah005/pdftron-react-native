@@ -2,6 +2,8 @@ package com.pdftron.reactnative.modules;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.react.bridge.ActivityEventListener;
@@ -14,6 +16,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.pdftron.pdf.dialog.digitalsignature.DigitalSignatureDialogFragment;
+import com.pdftron.reactnative.utils.ImageHelper;
 import com.pdftron.reactnative.viewmanagers.DocumentViewViewManager;
 
 public class DocumentViewModule extends ReactContextBaseJavaModule implements ActivityEventListener {
@@ -74,6 +77,23 @@ public class DocumentViewModule extends ReactContextBaseJavaModule implements Ac
                     promise.resolve(null);
                 } catch (Exception ex) {
                     promise.reject(ex);
+                }
+            }
+        });
+    }
+
+    @ReactMethod
+    public void setCustomRubberStampTool(final int tag, final String imageUrl, final String data, Promise promise) {
+        Uri uri = ImageHelper.fetchImageToUri(getReactApplicationContext(), imageUrl);
+
+        getReactApplicationContext().runOnUiQueueThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mDocumentViewInstance.setCustomRubberStampTool(tag, uri, data);
+                    promise.resolve(null);
+                } catch (Exception e) {
+                    promise.reject(e);
                 }
             }
         });

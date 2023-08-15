@@ -791,6 +791,7 @@ export class DocumentView extends PureComponent<DocumentViewProps, any> {
       propertyMap
     );
   };
+  
 
   setPropertiesForAnnotation = (
     id: string,

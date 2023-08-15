@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "deprecated-react-native-prop-types": "^2.3.0",
+    "has-flag": "^5.0.1",
     "react": "^18.0.0",
     "react-native": "^0.69.1",
-    "react-native-pdftron": "file:../"
+    "react-native-pdftron": "github:PDFTron/pdftron-react-native",
+    "react-native-xml2js": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

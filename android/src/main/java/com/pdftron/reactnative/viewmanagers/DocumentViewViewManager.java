@@ -1,6 +1,7 @@
 package com.pdftron.reactnative.viewmanagers;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
@@ -769,6 +770,15 @@ public class DocumentViewViewManager extends ViewGroupManager<DocumentView> {
             return documentView.handleBackButton();
         } else {
             throw new PDFNetException("", 0L, getName(), "handleBackButton", "Unable to find DocumentView.");
+        }
+    }
+
+    public void setCustomRubberStampTool(int tag, Uri uri, String data) throws PDFNetException {
+        DocumentView documentView = mDocumentViews.get(tag);
+        if (documentView != null) {
+            documentView.setCustomRubberStampTool(uri, data);
+        } else {
+            throw new PDFNetException("", 0L, getName(), "setCustomRubberStampTool", "Unable to find DocumentView.");
         }
     }
 
