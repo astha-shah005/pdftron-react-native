@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8233EE4F2A7508FD008764A0 /* PDFTron in Frameworks */ = {isa = PBXBuildFile; productRef = 8233EE4E2A7508FD008764A0 /* PDFTron */; };
+		8233EE522A75394D008764A0 /* CustomRubberStamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8233EE512A75394D008764A0 /* CustomRubberStamp.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNPdftron.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNPdftron.m */; };
 		CE0885F020E2C9F400AB7A9B /* RNTPTDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0885EF20E2C9F400AB7A9B /* RNTPTDocumentView.m */; };
 		CE0885F320E2CA1300AB7A9B /* RNTPTDocumentViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0885F220E2CA1300AB7A9B /* RNTPTDocumentViewManager.m */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNPdftron.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNPdftron.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8233EE502A753941008764A0 /* CustomRubberStamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomRubberStamp.h; sourceTree = "<group>"; };
+		8233EE512A75394D008764A0 /* CustomRubberStamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomRubberStamp.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNPdftron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNPdftron.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNPdftron.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNPdftron.m; sourceTree = "<group>"; };
 		CE0885EE20E2C9F400AB7A9B /* RNTPTDocumentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTPTDocumentView.h; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8233EE4F2A7508FD008764A0 /* PDFTron in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				8233EE512A75394D008764A0 /* CustomRubberStamp.m */,
+				8233EE502A753941008764A0 /* CustomRubberStamp.h */,
 				CE0885F720E2CACB00AB7A9B /* RNTPTPDFViewCtrlManager.h */,
 				CE0885F820E2CACB00AB7A9B /* RNTPTPDFViewCtrlManager.m */,
 				CE0885F420E2CAB100AB7A9B /* RNTPTPDFViewCtrl.h */,
@@ -97,6 +104,9 @@
 			dependencies = (
 			);
 			name = RNPdftron;
+			packageProductDependencies = (
+				8233EE4E2A7508FD008764A0 /* PDFTron */,
+			);
 			productName = RCTDataManager;
 			productReference = 134814201AA4EA6300B7C361 /* libRNPdftron.a */;
 			productType = "com.apple.product-type.library.static";
@@ -120,9 +130,13 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
+			packageReferences = (
+				8233EE4D2A7508FD008764A0 /* XCRemoteSwiftPackageReference "pdftron-apple-package" */,
+			);
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,6 +155,7 @@
 				CE0885F020E2C9F400AB7A9B /* RNTPTDocumentView.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNPdftron.m in Sources */,
 				CE0885F320E2CA1300AB7A9B /* RNTPTDocumentViewManager.m in Sources */,
+				8233EE522A75394D008764A0 /* CustomRubberStamp.m in Sources */,
 				CE0885F920E2CACB00AB7A9B /* RNTPTPDFViewCtrlManager.m in Sources */,
 				CE0885F620E2CAB100AB7A9B /* RNTPTPDFViewCtrl.m in Sources */,
 			);
@@ -304,6 +319,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8233EE4D2A7508FD008764A0 /* XCRemoteSwiftPackageReference "pdftron-apple-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PDFTron/pdftron-apple-package";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8233EE4E2A7508FD008764A0 /* PDFTron */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8233EE4D2A7508FD008764A0 /* XCRemoteSwiftPackageReference "pdftron-apple-package" */;
+			productName = PDFTron;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 58B511D31A9E6C8500147676 /* Project object */;
 }

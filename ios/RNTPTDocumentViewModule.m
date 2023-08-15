@@ -31,6 +31,22 @@ RCT_EXPORT_MODULE(DocumentViewManager) // JS-name
 
 #pragma mark - Methods
 
+RCT_REMAP_METHOD(setCustomRubberStampTool,
+                 setCustomRubberStampToolForDocumentViewTag:(nonnull NSNumber *)tag
+                 imageUrl:(NSString *)imageUrl
+                 data:(NSString *)data
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    @try {
+       [[self documentViewManager] setCustomRubberStampToolForDocumentViewTag:tag imageUrl:imageUrl data:data];
+       resolve(nil);
+    }
+    @catch (NSException *exception) {
+        reject(@"set_rubber_stamp_failed", @"Failed to set custom rubber stamp", [self errorFromException:exception]);
+    }
+}
+
 RCT_REMAP_METHOD(setToolMode,
                  setToolModeForDocumentViewTag:(nonnull NSNumber *)tag
                  toolMode:(NSString *)toolMode

@@ -4,6 +4,7 @@
 #import "RNTPTCollaborationDocumentController.h"
 #import "RNTPTDocumentController.h"
 #import "RNTPTNavigationController.h"
+#import "CustomRubberStamp.h"
 
 #include <objc/runtime.h>
 
@@ -267,6 +268,16 @@ NS_ASSUME_NONNULL_END
                                                        options:options];
     }
 }
+
+- (void)setCustomRubberStampTool:(NSString *)imageUrl data:(NSString *)data
+{    
+    PTPDFViewCtrl *pdfViewCtrl = self.currentDocumentViewController.pdfViewCtrl;
+    PTToolManager *toolManager = self.currentDocumentViewController.toolManager;
+    
+    CustomRubberStamp *linkStampCreate = [[CustomRubberStamp alloc] initWithPDFViewCtrl:pdfViewCtrl imageUrl:imageUrl data:data];
+    [toolManager setTool:linkStampCreate];
+}
+
 
 - (void)setDocument:(NSString *)document
 {

@@ -689,6 +689,17 @@ RCT_CUSTOM_VIEW_PROPERTY(signatureColors, NSArray, RNTPTDocumentView)
 
 #pragma mark - Events
 
+
+- (void)setCustomRubberStampToolForDocumentViewTag:(NSNumber *)tag imageUrl:(NSString *)imageUrl data:(NSString *)data
+{
+    RNTPTDocumentView *documentView = self.documentViews[tag];
+    if (documentView) {
+        [documentView setCustomRubberStampTool:imageUrl data:data];
+    } else {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Unable to find DocumentView for tag" userInfo:nil];
+    }
+}
+
 - (void)navButtonClicked: (RNTPTDocumentView *) sender
 {
     if (sender.onChange) {

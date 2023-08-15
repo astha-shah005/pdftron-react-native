@@ -551,6 +551,8 @@ static NSString * const PTSignaturesManager_signatureDirectory = @"PTSignaturesM
 
 #pragma mark - Methods
 
+- (void)setCustomRubberStampTool:(NSString *)imageUrl data:(NSString *)data;
+
 - (void)setToolMode:(NSString *)toolMode;
 
 - (BOOL)commitTool;

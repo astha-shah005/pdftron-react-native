@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, RNTPTDocumentView *> *documentViews;
 
+- (void)setCustomRubberStampToolForDocumentViewTag:(NSNumber *)tag imageUrl:(NSString *)imageUrl data:(NSString *)data;
+
 - (void)setToolModeForDocumentViewTag:(NSNumber *)tag toolMode:(NSString *)toolMode;
 
 - (BOOL)commitToolForDocumentViewTag:(NSNumber *)tag;
